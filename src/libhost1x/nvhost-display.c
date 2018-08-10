@@ -132,7 +132,7 @@ static int overlay_create(struct host1x_display *displayp,
 {
 	struct nvhost_display *display = to_nvhost_display(displayp);
 	int plane = TEGRA_DC_EXT_FLIP_N_WINDOWS;
-	int err;
+	int err = 0;
 
 	while (--plane >= 0) {
 		err = ioctl(display->fd, TEGRA_DC_EXT_GET_WINDOW, plane);
