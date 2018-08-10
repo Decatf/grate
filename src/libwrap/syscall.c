@@ -114,6 +114,9 @@ int open(const char *pathname, int flags, ...)
 	return ret;
 }
 
+#ifdef open64
+#undef open64
+#endif
 int open64(const char *pathname, int flags, ...)
 {
 	static typeof(open64) *orig = NULL;
