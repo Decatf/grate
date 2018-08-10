@@ -353,7 +353,7 @@ void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)
 	void *ret;
 
 	PRINTF("%s(addr=%p, length=%zu, prot=%#x, flags=%#x, fd=%d, offset=%lu)\n",
-	       __func__, addr, length, prot, flags, fd, offset);
+	       __func__, addr, length, prot, flags, fd, (long unsigned int)offset);
 
 	ret = mmap_orig(addr, length, prot, flags, fd, offset);
 
