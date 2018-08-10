@@ -568,7 +568,7 @@ static int drm_bo_mmap(struct host1x_bo *bo)
 		return -errno;
 
 	ptr = mmap(NULL, orig->size, PROT_READ | PROT_WRITE, MAP_SHARED,
-		   drm->drm->fd, (__off_t)args.offset);
+		   drm->drm->fd, (off_t)args.offset);
 	if (ptr == MAP_FAILED)
 		return -errno;
 
