@@ -274,7 +274,8 @@ static long timespec_diff_in_us(struct timespec *t1, struct timespec *t2)
 	return (diff.tv_sec * 1000000.0 + diff.tv_nsec / 1000);
 }
 
-int ioctl(int fd, unsigned long request, ...)
+//int ioctl(int fd, unsigned long request, ...)
+int ioctl(int fd, int request, ...)
 {
 	static typeof(ioctl) *orig = NULL;
 	const struct ioctl *ioc = NULL;
@@ -304,7 +305,7 @@ int ioctl(int fd, unsigned long request, ...)
 	arg = va_arg(ap, void *);
 	va_end(ap);
 
-	PRINTF("%s(fd=%d, request=%#lx, arg=%p)\n", __func__, fd, request, arg);
+	PRINTF("%s(fd=%d, request=%#x, arg=%p)\n", __func__, fd, request, arg);
 
 	if (file && file->ops && file->ops->enter_ioctl) {
 		pthread_mutex_lock(&ioctl_lock);
@@ -325,7 +326,7 @@ int ioctl(int fd, unsigned long request, ...)
 	}
 
 	if (!ioc) {
-		PRINTF("  dir:%lx type:'%c' nr:%lx size:%lu\n",
+		PRINTF("  dir:%x type:'%c' nr:%x size:%u\n",
 		       _IOC_DIR(request), (char)_IOC_TYPE(request),
 		       _IOC_NR(request), _IOC_SIZE(request));
 	} else {
