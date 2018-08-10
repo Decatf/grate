@@ -33,6 +33,7 @@
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
+#include <sys/select.h>
 
 #include "../libhost1x/host1x-private.h"
 #include "libgrate-private.h"
