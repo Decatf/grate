@@ -31,7 +31,7 @@
 
 #include "utils.h"
 
-extern void *_dl_sym(void *, const char *, void *);
+// extern void *_dl_sym(void *, const char *, void *);
 extern void *__libc_malloc(size_t size);
 extern void *__libc_realloc(void *ptr, size_t size);
 extern void *__libc_free(void *ptr);
@@ -52,7 +52,8 @@ static void *__dlsym(void *handle, const char *name)
 	static typeof(dlsym) *orig = NULL;
 
 	if (orig == NULL)
-		orig = _dl_sym(RTLD_NEXT, "dlsym", dlsym);
+		// orig = _dl_sym(RTLD_NEXT, "dlsym", dlsym);
+		orig = dlsym(RTLD_NEXT, "dlsym");
 
 	if (!strcmp(name, "dlsym"))
 		return (void*)dlsym;
